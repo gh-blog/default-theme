@@ -12,23 +12,25 @@ module.exports = (options) ->
 
     css = (done) ->
         async.waterfall [
-            (callback) -> fs.readFile "#{__dirname}/dist/main.css", done
-            (css, callback) ->
-                console.log 'CSS', css
-                callback null, new File {
+            (callback) -> fs.readFile "#{__dirname}/dist/main.css", callback
+            (cssBuffer, callback) ->
+                file = new File {
                     path: cssPath
-                    contents: new Buffer css
+                    contents: cssBuffer
                 }
+                callback null, file
         ], done
 
     fonts = (done) ->
         async.waterfall [
             (callback) ->
-                recursive "#{__dirname}/dist/fonts", callback
+                recursive "#{__dirname}/dist", ['*.css'], callback
             (paths, done) ->
                 async.map paths, (path, callback) ->
+                    relative = Path.relative "#{__dirname}/dist", path
+                    relative = Path.join 'styles', relative
                     callback null, new File {
-                        path: path
+                        path: relative
                         contents: fs.readFileSync path
                     }
                 , done
@@ -40,7 +42,7 @@ module.exports = (options) ->
         done null, file
 
     through2.obj processFile, (done) ->
-        async.parallel { css, fonts }, (err, results) ->
+        async.parallel { css, fonts }, (err, results) =>
             @push results.css
             @push file for file in results.fonts
             done()
