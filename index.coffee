@@ -25,7 +25,7 @@ css = (done) ->
 fonts = (done) ->
     async.waterfall [
         (callback) ->
-            recursive "#{__dirname}/styles/fonts", callback
+            recursive "#{__dirname}/dist/fonts", callback
         (paths, done) ->
             async.map paths, (path, callback) ->
                 callback null, new File {
