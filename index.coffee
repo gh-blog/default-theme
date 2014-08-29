@@ -1,4 +1,4 @@
-Less = require 'less'
+# Less = require 'less'
 through2 = require 'through2'
 File = require 'vinyl'
 fs = require 'fs'
