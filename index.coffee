@@ -8,7 +8,7 @@ async = require 'async'
 
 module.exports = (options) ->
     # lessPath = "#{__dirname}/styles/main.less"
-    cssPath = 'styles/main.css'
+    cssPath = '../styles/main.css'
 
     css = (done) ->
         async.waterfall [
@@ -28,7 +28,7 @@ module.exports = (options) ->
             (paths, done) ->
                 async.map paths, (path, callback) ->
                     relative = Path.relative "#{__dirname}/dist", path
-                    relative = Path.join 'styles', relative
+                    relative = Path.join '../styles', relative
                     callback null, new File {
                         path: relative
                         contents: fs.readFileSync path

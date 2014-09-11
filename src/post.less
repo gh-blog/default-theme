@@ -2,13 +2,35 @@
 @import (reference) 'variables';
 @import 'thabit';
 
-.post-view {
+#post-view {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     @media @smartphone, @tablet {
         width: 100%;
     }
+}
+
+// @TODO: don't over qualify selectors!
+
+.post-link {
+    .has-accent('link');
+}
+
+.post-link {
+    .has-accent('video');
+}
+
+.post-image {
+    .has-accent('image');
+}
+
+.post-text {
+    .has-accent('text');
+}
+
+.post-quote {
+    .has-accent('quote');
 }
 
 .post {
@@ -21,23 +43,7 @@
         text-align: justify;
     }
 
-    &.link {
-        .colorize-card('link');
-    }
-    &.video {
-        .colorize-card('video');
-    }
-    &.image {
-        .colorize-card('image');
-    }
-    &.text {
-        .colorize-card('text');
-    }
-    &.quote {
-        .colorize-card('quote');
-    }
-
-    .post-view & {
+    #post-view & {
         .card; .single;
 
         max-width: 790px;
@@ -85,7 +91,7 @@
         }
     }
 
-    .home-view & {
+    #home-view & {
         max-height: 350px;
         .post-inner {
             display: table;
