@@ -1,6 +1,6 @@
 {
-  "name": "default-theme",
-  "version": "0.0.0",
+  "name": "gh-blog-default-theme",
+  "version": "1.0.0",
   "description": "Default theme for gh-blog. Features a responsive layout with cool Google-like cards.",
   "main": "index.coffee",
   "scripts": {
